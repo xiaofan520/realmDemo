@@ -7,6 +7,12 @@
 //
 
 #import "AppDelegate.h"
+#import "CollectionViewController.h"
+#import "DemoViewController.h"
+#import "DemoRelamViewController.h"
+// 0 collctionView  1 网易demo
+#define SELCTEDDEMO 1
+
 
 @interface AppDelegate ()
 
@@ -16,7 +22,47 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+
+    UIViewController *vc = [[UIViewController alloc] init];
+//    if (SELCTEDDEMO) {
+//        // 网易demo
+//        vc = [[DemoViewController alloc] init];
+//        
+//    }else{
+//        //collctionViewDemo
+//        vc = [[CollectionViewController alloc] init];
+//        
+//    }
+    vc = [[DemoRelamViewController alloc] init];
+    
+    
+    NSString *str1;
+    NSString *str2;
+    NSDictionary * paramBodys =@{
+                  @"activityQuery": @{
+                          @"startTime": @""
+                          },
+                  @"alarmQuery": @{
+                          @"alarmType": @""
+                          },
+                  @"fireStateQuery": @{
+                          @"startTime": [NSString stringWithFormat:@"%@",str1]
+                          },
+                  @"quesQuery": @{
+                          @"startTime":[NSString stringWithFormat:@"%@",str2]
+                        
+                          }
+                  };
+    NSLog(@"%@",paramBodys);
+    
+ 
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    self.window.rootViewController = nav;
+    
     return YES;
 }
 
